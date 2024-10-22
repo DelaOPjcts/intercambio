@@ -125,10 +125,9 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-LOGIN_REDIRECT_URL = 'home'
-
 MEDIA_URL = '/media/'  # URL pública para acceder a los archivos subidos
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')  # Carpeta en tu sistema de archivos donde se almacenarán los archivos
 
 LOGIN_URL = '/login/'
+LOGIN_REDIRECT_URL = '/home/'
 LOGOUT_REDIRECT_URL = '/login/'

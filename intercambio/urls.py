@@ -20,11 +20,12 @@ from django.urls import include
 from django.conf.urls.static import static
 from django.conf import settings
 from django.shortcuts import redirect
+from django.contrib.auth import views as auth_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('home/', include('regalos.urls')),
-    path('', lambda request: redirect('home')),
+    path('', include('regalos.urls')),
+    path('', lambda request: redirect('login')),
 ]
 
 if settings.DEBUG:
