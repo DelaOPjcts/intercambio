@@ -11,4 +11,5 @@ urlpatterns = [
     path('opciones_regalo/nuevo/', form_regalo, name='form_regalo'),
     path('ver_regalo/<int:regalo_id>/', ver_regalo, name='ver_regalo'),
     path('eliminar_regalo/<int:regalo_id>/', views.eliminar_regalo, name='eliminar_regalo'),
+    path('regalos/<int:regalo_id>/editar/', views.editar_regalo, name='editar_regalo'),
 ]

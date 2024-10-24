@@ -81,6 +81,25 @@ def ver_regalo(request, regalo_id):
     return render(request, 'ver_regalo.html', context)
 
 @login_required(login_url='/login/')
+def editar_regalo(request, regalo_id):
+    regalo = get_object_or_404(Regalo, id=regalo_id)
+    
+    # Solo el dueño del regalo puede editarlo
+    if regalo.participante.usuario != request.user:
+        return redirect('opciones_regalo')  # Redirigir si no es el propietario
+
+    if request.method == 'POST':
+        form = RegaloForm(request.POST, request.FILES, instance=regalo)
+        if form.is_valid():
+            form.save()
+            return redirect('opciones_regalo')
+    else:
+        form = RegaloForm(instance=regalo)
+
+    return render(request, 'form_regalo.html', {'form': form})
+
+
+@login_required(login_url='/login/')
 def eliminar_regalo(request, regalo_id):
     regalo = get_object_or_404(Regalo, id=regalo_id, participante__usuario=request.user)
     regalo.delete()
